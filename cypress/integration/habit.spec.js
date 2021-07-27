@@ -19,4 +19,13 @@ describe("habit dashboard", () => {
       .should("be.visible")
       .and("have.class", "HabitCard__habit-container");
   });
+
+  it("toggle icon when habit card is clicked", () => {
+    cy.get("#habit-add-btn").click();
+    cy.get("input[placeholder='Habit']").type("My First Test");
+    cy.contains("Save Changes").click();
+    cy.get("[src='/static/media/close.fa7e5ead.svg']").should("be.visible");
+    cy.contains("My First Test").click();
+    cy.get("[src='/static/media/check.9e8832df.svg']").should("be.visible");
+  });
 });
