@@ -20,6 +20,13 @@ describe("habit dashboard", () => {
       .and("have.class", "HabitCard__habit-container");
   });
 
+  it("should close modal when close button is clicked", () => {
+    cy.get("#habit-add-btn").click();
+    cy.contains("Add a new habit").should("be.visible");
+    cy.contains("button", "Close").click();
+    cy.contains("Add a new habit").should("not.exist");
+  });
+
   it("toggle icon when habit card is clicked", () => {
     cy.get("#habit-add-btn").click();
     cy.get("input[placeholder='Habit']").type("My First Test");
