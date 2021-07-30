@@ -20,11 +20,17 @@ describe("habit dashboard", () => {
       .and("have.class", "HabitCard__habit-container");
   });
 
-  it("should close modal when close button is clicked", () => {
+  it("should exit modal when close button is clicked", () => {
     cy.get("#habit-add-btn").click();
     cy.contains("Add a new habit").should("be.visible");
     cy.contains("button", "Close").click();
     cy.contains("Add a new habit").should("not.exist");
+  });
+
+  it("modal remain when input field is empty and save-changes button is clicked", () => {
+    cy.get("#habit-add-btn").click();
+    cy.contains("button", "Save Changes").click();
+    cy.contains("Add a new habit").should("be.visible");
   });
 
   it("toggle icon when habit card is clicked", () => {
